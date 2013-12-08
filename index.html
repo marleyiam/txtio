@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="blurjs/blurjs/blur.min.js"></script>
+        <style type="text/css" media="screen">
+        html, body, div, span, object, iframe,
+                h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+                abbr, address, cite, code,
+                del, dfn, em, img, ins, kbd, q, samp,
+                small, strong, sub, sup, var,
+                b, i,
+                dl, dt, dd, ol, ul, li,
+                fieldset, form, label, legend,
+                table, caption, tbody, tfoot, thead, tr, th, td,
+                article, aside, canvas, details, figcaption, figure,
+                footer, header, hgroup, menu, nav, section, summary,
+                time, mark, audio, video {
+                        margin:0;
+                        padding:0;
+                        border:0;
+                        outline:0;
+                        font-size:100%;
+                        vertical-align:baselinebaseline;
+                        background:transparent;
+                }
+            #inset{padding-bottom: 10px;}
+            .current{
+                float:left;
+                text-shadow: 0 -1px 4px rgba(0, 0, 0, 0.2), 0 2px 2px #000000;
+            }
+            #inset .holder {
+                /*background: none repeat scroll 0 0 #777777;*/
+               /*background: none repeat scroll 0 0 #7A5230;*/
+                background-image: linear-gradient(to bottom, #7A5230, #aa7243 130%);
+                box-shadow: 0 2px 3px 0 rgba(255, 255, 255, 0.3) inset, 0 -3px 6px 0 rgba(0, 0, 0, 0.2) inset, 0 3px 2px 0 rgba(0, 0, 0, 0.2)
+                /*background-color:#7A5230;*/
+            }
+            .holder {
+                background: none repeat scroll 0 0 #FAFAFA;
+                /*background: none repeat scroll 0 0 #49311c;*/
+                padding: 30px;
+                text-align: center;
+            }
+
+            #wrapper section {
+                border-bottom: 1px solid #CCCCCC;
+                margin: 10px 0;
+                padding: 20px 25px;
+            }
+            header, section, footer, nav {
+                display: block;
+            }
+
+            .nice_header {
+                /*color: #444444;*/
+                color: #fadabf;
+                font-family: 'MEgalopolisExtraRegular';
+                text-transform: uppercase;
+                text-shadow: -1px -1px 1px #000000, 1px 1px 1px #CCCCCC;
+                font-size: 58px;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+            p {
+                text-shadow: 0 1px 0 #FFFFFF;
+            }
+            p.clean {
+                text-shadow: none;
+            }
+
+
+            #subscribes {
+                float: right;
+                font-size: 12px;
+                margin-right: 60px;
+                margin-top: 4px;
+            }
+
+            #subscribes ul {
+                list-style: none outside none;
+                margin-top: 6px;
+            }
+
+            #subscribes ul li {
+                float: right;
+                padding-bottom: 5px;
+                padding-top: 2px;
+            }
+
+            #subscribes ul li a:link, nav ul li a:visited {
+                color: #FFFFFF;
+                font-family: "arial";
+                font-size: 11px;
+                font-weight: bold;
+            }
+
+            body { 
+                background-image: url("wood-bg.jpg");
+                background-repeat: repeat; 
+                color: #EEEEEE;
+            } 
+ 
+            .target, .targetCopy {
+                /*background-position: -371.5px -547px;*/
+                background-attachment: scroll;
+                background-image: url('wood-bg.jpg'); 
+                background-repeat: repeat;
+                background-attachment: scroll;
+                border-radius: 10px;
+                box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 -1px 0 rgba(255, 255, 255, 0.8), 0 4px 10px rgba(0, 0, 0, 0.6);
+                /*margin: 0 auto 50px;*/
+                margin: 0 0 15px 15px;
+                padding: 10px;
+                text-shadow: 0 1px 0 #FFFFFF;
+                /*width: 500px;*/
+                width: 100%;
+                max-width: 800px;
+            } 
+
+            .body, .changelog {
+                background-color: rgba(255, 255, 255, 0.3);
+                border-radius: 10px;
+                box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 1px 0 #FFFFFF;
+                color: #000000;
+                font-family: monospace;
+                /*overflow-x: scroll;*/
+                /*overflow: scroll;*/
+                resize:both;
+                overflow:auto;
+                padding: 10px;
+                position: relative;
+                white-space: pre;
+            }  
+
+            h2 {
+                color: #FFFFFF;
+                display: inline-block;
+                margin: 0 0 7px;
+                padding: 0;
+                text-shadow: 0 -1px 4px rgba(0, 0, 0, 0.2), 0 2px 2px #000000;
+            } 
+            h4 {
+                color: #FFFFFF;
+                display: inline-block;
+                margin: 0 0 7px;
+                padding: 0;
+                text-shadow: 0 -1px 4px rgba(0, 0, 0, 0.2), 0 2px 2px #000000;
+                float:right;
+            }
+        </style>
+        <script>
+        $('.target:eq(0)').blurjs({ source: 'body', offset: { x: 1, y: -1 }, });
+        /*
+        from remote url
+
+               var xmlhttp = null;
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.open("GET", "https://www.dropbox.com/s/iitmrf71dcv3igb/export.xml", false);
+                xmlhttp.send();
+                
+                //var parser = new DOMParser();
+                //var xmlDoc = parser.parseFromString(xmlhttp.responseText,"text/html");
+                //xmlDoc.body.innerHTM
+                //var tds = xmlDoc.getElementsByTagName("td");
+                
+                var t = xmlhttp.responseText;
+                t = t.replace(/^(.*\n)*.*<html/i, "<html");
+                t = t.replace(/<\/html>(.*\n)*.*$/i, "</html>");
+                console.log('***********************************')
+                console.log(t)
+               // var parser = new DOMParser();
+               // var dom = parser.parseFromString(t, "text/xml");
+                //console.log(dom.firstChild.nodeName);
+                //console.log(dom.getElementsByTagName("post"));
+                //var sessions = dom.getElementsByTagName("");
+                //console.log(sessions)
+                
+        */
+
+        function xmlToJson(xml) {
+            
+            // Create the return object
+            var obj = {};
+
+            if (xml.nodeType == 1) { // element
+                // do attributes
+                if (xml.attributes.length > 0) {
+                obj["@attributes"] = {};
+                    for (var j = 0; j < xml.attributes.length; j++) {
+                        var attribute = xml.attributes.item(j);
+                        obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                    }
+                }
+            } else if (xml.nodeType == 3) { // text
+                obj = xml.nodeValue;
+            }
+
+            // do children
+            if (xml.hasChildNodes()) {
+                for(var i = 0; i < xml.childNodes.length; i++) {
+                    var item = xml.childNodes.item(i);
+                    var nodeName = item.nodeName;
+                    if (typeof(obj[nodeName]) === "undefined") {
+                        obj[nodeName] = xmlToJson(item);
+                    } else {
+                        if (typeof(obj[nodeName].push) === "undefined") {
+                            var old = obj[nodeName];
+                            obj[nodeName] = [];
+                            obj[nodeName].push(old);
+                        }
+                        obj[nodeName].push(xmlToJson(item));
+                    }
+                }
+            }
+            return obj;
+        };
+
+            function loadDoc(url) {
+                var xmlhttp = null;
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.open("GET", url, false);
+                xmlhttp.send();
+                return xmlhttp.responseXML;
+            }
+
+            function getContent(json_posts) {
+                //console.log(json_posts)
+                console.log(Object.keys(json_posts.root.post).length)
+                var items = null,
+
+                    i = 0,
+                    j = 0,
+
+                    img = "",
+                    path = "",
+                    file = "",
+                    end = "",
+                    name = "",
+                    txt = "";
+
+                var posts = json_posts.root.post,
+                    title,
+                    body,
+                    date,
+                    postid;
+
+                for (i = 0; i < posts.length; i++) { 
+                    e = document.getElementById("content");
+
+                    div_blured = document.createElement("div")
+                    div_body = document.createElement("div")
+                    h2 = document.createElement("h2")
+                    h4 = document.createElement("h4")
+                    div_body.setAttribute("class","body")
+                    div_blured.setAttribute("class","target blurred")
+                    div_blured.setAttribute('post-id', posts[i].postid);
+                    h2.innerHTML = posts[i].title;
+                    h4.innerHTML = posts[i].date;
+                    div_body.innerHTML = posts[i].body;
+                    div_blured.appendChild(h2);
+                    div_blured.appendChild(h4);
+                    div_blured.appendChild(div_body);
+                    e.appendChild(div_blured);
+                }
+            }
+
+            function displayResult() {
+
+                var xmlDoc = loadDoc("export.xml");
+                var jsonPosts = xmlToJson(xmlDoc);
+                var xmlPosts = xmlDoc.children[0].getElementsByTagName("post");
+                var c = xmlPosts.length;
+                //var xmlPosts = xmlDoc.children[0].getElementsByTagName("root")
+                //console.log(xmlPosts.length)
+                //for (var i = l; i--;) {
+                //for (var i = l-1; i >= 0; i--) {
+                    //console.log(i)
+                for (var i = 0, l = xmlPosts.length -1; i <= l; i++) {
+                    jsonPosts.root.post[i].postid =  c--;
+                    jsonPosts.root.post[i].title = xmlPosts[i].getElementsByTagName("title")[0].firstChild.nodeValue;
+                    jsonPosts.root.post[i].body = xmlPosts[i].getElementsByTagName("body")[0].firstChild.nodeValue;
+                    jsonPosts.root.post[i].date = xmlPosts[i].getElementsByTagName("date")[0].firstChild.nodeValue;
+                }
+
+                //parser = new DOMParser();
+                //xml = parser.parseFromString(xmlDoc,"text/xml");
+                //console.log(JSON.stringify(jsonText));
+                //console.log(jsonPosts);
+                getContent(jsonPosts);
+            }
+
+        </script>
+    </head>
+    <body onload="displayResult()">
+        <section id="inset">
+                <div class="holder">
+                    <div class="nice_header">TXT.IO [2]</div>
+
+                   
+                        <div id="subscribes">
+                          <ul>
+                            <li><a href="http://feeds.feedburner.com/txtio2"><img width="24" height="24" alt="Subscribe to Rss Feed" src="http://gdj.gdj.netdna-cdn.com/wp-content/themes/polkadot/images/foot_rss.png"></a></li>
+                            <li><a target="_blank" href="https://plus.google.com/+txtio2/"><img width="24" height="24" align="absmiddle" style="margin-right:5px;" alt="Follow us on Google+" src="http://gdj.gdj.netdna-cdn.com/wp-content/themes/polkadot/images/gplus2.png"></a></li>
+                            <li><a target="_blank" href="http://www.facebook.com/txtio2"><img width="24" height="24" align="absmiddle" style="margin-right:5px;" alt="Follow us on Facebook" src="http://gdj.gdj.netdna-cdn.com/wp-content/themes/polkadot/images/foot_facebook.png"></a></li>
+                            <li><a target="_blank" href="http://twitter.com/txtio2"><img width="24" height="24" align="absmiddle" style="margin-right:5px;" alt="Follow us on Twitter" src="http://gdj.gdj.netdna-cdn.com/wp-content/themes/polkadot/images/foot_twitter.png"></a></li>
+                          </ul>
+                          <div class="current">
+                            Hello, motherfucker&nbsp;|&nbsp;<a href="#">logout</a>
+                          </div>
+                        </div>
+               
+
+
+                    <p>This stuff is mainly for you if you're one of a sort of motherfuckers who use a lot of notepad and miss that good old but pretty fancy useful txt.io web application</p>
+                    <p class="clean">Now things are comming back much more badass and you'll enjoy a lot by writing the best shit you could anywhere anytime \m/</p>
+                </div>
+         </section>
+        <div id='content'></div>
+    </body>
+</html>
